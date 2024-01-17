@@ -18,6 +18,10 @@ jobs:
           pip install requests
           $isSSCOnline = $(py C:/pipeline/online.py)
           echo $isSSCOnline
+          |
+           if ($isSSCOnline -eq 200) {
+             scancentral 
+             }
         #scancentral -sscurl $SSC_URL -ssctoken $SSC_TOKEN start -bt none -upload -application $APPLICATION -version $VERSION -uptoken $SSC_TOKEN
       #- name: Run ScanCentral SAST Scan
        # uses: fortify/github-action@v1
