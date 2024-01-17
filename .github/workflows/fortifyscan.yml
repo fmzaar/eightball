@@ -11,6 +11,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Probar scripts
         run: |
+          python --version
           isSSCOnline = $(py C:/pipeline/online.py)
           echo $isSSCOnline
         #scancentral -sscurl $SSC_URL -ssctoken $SSC_TOKEN start -bt none -upload -application $APPLICATION -version $VERSION -uptoken $SSC_TOKEN
