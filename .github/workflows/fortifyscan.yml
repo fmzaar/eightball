@@ -4,7 +4,8 @@ on: push
 
 jobs:
   fortify-SAST:
-    runs-on: windowstest
+    runs-on: 
+      - self-hosted
     steps:
       - name: Check out source code
         uses: actions/checkout@v4
