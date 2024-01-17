@@ -14,12 +14,10 @@ jobs:
       #  with:
       #    python-version: '3.11.2'
       - name: Probar scripts
-        shell: cmd
         run: |
           pip install requests
-          py C:\pipeline\online.py
-        #isSSCOnline = $(py C:/pipeline/online.py)
-        #echo $isSSCOnline
+          isSSCOnline : $(py C:/pipeline/online.py)
+          echo $isSSCOnline
         #scancentral -sscurl $SSC_URL -ssctoken $SSC_TOKEN start -bt none -upload -application $APPLICATION -version $VERSION -uptoken $SSC_TOKEN
       #- name: Run ScanCentral SAST Scan
        # uses: fortify/github-action@v1
