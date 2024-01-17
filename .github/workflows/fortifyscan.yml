@@ -17,9 +17,9 @@ jobs:
         shell: cmd
         run: |
           hostname
-          C:\Users\Usuario\AppData\Local\Programs\Python\Python311\python.exe --version
-          isSSCOnline = $(py C:/pipeline/online.py)
-          echo $isSSCOnline
+          python --version
+        #isSSCOnline = $(py C:/pipeline/online.py)
+        #echo $isSSCOnline
         #scancentral -sscurl $SSC_URL -ssctoken $SSC_TOKEN start -bt none -upload -application $APPLICATION -version $VERSION -uptoken $SSC_TOKEN
       #- name: Run ScanCentral SAST Scan
        # uses: fortify/github-action@v1
