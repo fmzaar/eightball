@@ -15,7 +15,7 @@ jobs:
           echo $isSSCOnline
           
           if [$isSSCOnline -eq 200]; then
-            scancentral -sscurl $SSC_URL -ssctoken $SSC_TOKEN start -bt none -upload -application $APPLICATION -version $VERSION -uptoken $SSC_TOKEN
+            scancentral -sscurl ${{secrets.SSC_URL}} -ssctoken ${{secrets.SSC_TOKEN}} start -bt none -upload -application ${{secrets.APPLICATION}} -version ${{secrets.VERSION}} -uptoken ${{secrets.SSC_TOKEN}}
             grep "Submitted job and received token:" > jobtoken.txt
             cat jobtoken.txt
             python3 <ruta de carga>/jobtoken.py
