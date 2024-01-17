@@ -1,7 +1,10 @@
 name: Fortify-Results
 
-on: push #Configurar de acuerdo a politicas de la empresa.
-
+on: 
+  workflow_run:
+    workflows: ["Fortify Scan"]
+    types:
+      - completed
 jobs:
   Fortify-Results:
     runs-on: 
