@@ -1,6 +1,6 @@
 name: Fortify-Scan
 
-on: push
+on: push #Configurar de acuerdo a politicas de la empresa.
 
 jobs:
   Fortify-Scan:
@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Check out source code
         uses: actions/checkout@v4
-      - name: Probar scripts
+      - name: Fortify Scan
         run: |
           isSSCOnline = $(python3 <ruta de carga>/online.py)
           echo $isSSCOnline
