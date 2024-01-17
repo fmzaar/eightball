@@ -9,14 +9,19 @@ jobs:
     steps:
       - name: Check out source code
         uses: actions/checkout@v4
-      - name: Run ScanCentral SAST Scan
-        uses: fortify/github-action@v1
-        with:
-          sast-scan: true
-        env:
-          SSC_URL: ${{secrets.SSC_URL}}
-          SSC_TOKEN: ${{secrets.SSC_TOKEN}}
-          SC_SAST_CLIENT_AUTH_TOKEN: ${{secrets.CLIENT_AUTH_TOKEN}}
-          SSC_APPVERSION: test:qa
-          EXTRA_SC_SAST_SCAN_OPTS: -k
+      - name: Probar scripts
+        run: |
+          echo Helloo
+          sleep 10
+          echo Chauuu
+      #- name: Run ScanCentral SAST Scan
+       # uses: fortify/github-action@v1
+       # with:
+       #   sast-scan: true
+        #env:
+         # SSC_URL: ${{secrets.SSC_URL}}
+          #SSC_TOKEN: ${{secrets.SSC_TOKEN}}
+          #SC_SAST_CLIENT_AUTH_TOKEN: ${{secrets.CLIENT_AUTH_TOKEN}}
+          #SSC_APPVERSION: test:qa
+          #EXTRA_SC_SAST_SCAN_OPTS: -k
           
