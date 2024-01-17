@@ -11,9 +11,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Probar scripts
         run: |
-          echo Helloo
-          sleep 10
-          echo Chauuu
+          scancentral
       #- name: Run ScanCentral SAST Scan
        # uses: fortify/github-action@v1
        # with:
