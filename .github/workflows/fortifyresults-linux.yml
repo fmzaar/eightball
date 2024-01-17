@@ -1,0 +1,30 @@
+name: Fortify-Scan
+
+on: push #Configurar de acuerdo a politicas de la empresa.
+
+jobs:
+  Fortify-Results:
+    runs-on: 
+      - self-hosted
+    env:
+      APPID: 0 #Ingresar el APPID
+      HIGH_LIMIT: 0
+      CRITICAL_LIMIT: 0
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+      - name: Fortify Scan
+        run: |
+          isSSCOnline = $(python3 <ruta de carga>/online.py)
+          echo $isSSCOnline
+          if [[$isSSCOnline -eq 200]]; then
+            python3 <Ruta de carga>/.py high $APPID
+            python3 <Ruta de carga>/results.py critical $APPID
+            High=$(cat <Ruta de carga>/vulnerabilities_high_found.txt)
+            Critical=$(cat <Ruta de carga>/vulnerabilities_critical_found.txt)
+            echo "Total vulnerabilidades encontradas:"
+            echo "Altas: " $High
+            echo "Criticas: " $Critical
+
+            if [ "$High" -gt "$HIGH_LIMIT"] || ["Critical" -gt "$CRITICAL_LIMIT"]; Then exit 1; fi
+          fi
