@@ -9,8 +9,8 @@ jobs:
     steps:
       - name: Check out source code
         uses: actions/checkout@v4
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      #- name: Setup Python
+      #  uses: actions/setup-python@v5
       #  with:
       #    python-version: '3.11.2'
       - name: Probar scripts
@@ -20,9 +20,9 @@ jobs:
           echo $isSSCOnline
           
           if ($isSSCOnline -eq 200) {
-            scancentral 
+            scancentral -sscurl $SSC_URL -ssctoken $SSC_TOKEN start -bt none -upload -application $APPLICATION -version $VERSION -uptoken $SSC_TOKEN
              }
-        #scancentral -sscurl $SSC_URL -ssctoken $SSC_TOKEN start -bt none -upload -application $APPLICATION -version $VERSION -uptoken $SSC_TOKEN
+        
       #- name: Run ScanCentral SAST Scan
        # uses: fortify/github-action@v1
        # with:
