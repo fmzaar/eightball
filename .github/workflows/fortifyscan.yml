@@ -1,0 +1,20 @@
+name: Fortify-Scan
+
+on: push
+
+jobs:
+  fortify-SAST:
+    runs-on: windowstest
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+      - name: Run ScanCentral SAST Scan
+        uses: fortify/github-action@v1
+        with:
+          sast-scan: true
+        env:
+          SSC_URL: ${{secrets.SSC_URL}}
+          SSC_TOKEN: ${{secrets.SSC_TOKEN}}
+          SC_SAST_CLIENT_AUTH_TOKEN: ${{secrets.CLIENT_AUTH_TOKEN}}
+          SSC_APPVERSION: test:qa
+          
