@@ -1,0 +1,24 @@
+name: Fortify-Scan
+
+on: push
+
+jobs:
+  fortify-SAST:
+    runs-on: 
+      - self-hosted
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+      - name: Fortify Scan
+        run: |
+          $isSSCOnline = $(python.exe <ruta de carga>/online.py)
+          echo $isSSCOnline
+          
+          if ($isSSCOnline -eq 200) {
+            scancentral -sscurl $SSC_URL -ssctoken $SSC_TOKEN start -bt none -upload -application $APPLICATION -version $VERSION -uptoken $SSC_TOKEN
+            findstr /B /R /c:"Submitted job and received token:*" > jobtoken.txt
+            type jobtoken.txt
+            python.exe <ruta de carga>/jobToken.py 
+             }
+        
+          
