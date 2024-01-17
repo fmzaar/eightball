@@ -18,6 +18,7 @@ jobs:
         run: |
           hostname
           python --version
+          py C:/pipeline/online.py
         #isSSCOnline = $(py C:/pipeline/online.py)
         #echo $isSSCOnline
         #scancentral -sscurl $SSC_URL -ssctoken $SSC_TOKEN start -bt none -upload -application $APPLICATION -version $VERSION -uptoken $SSC_TOKEN
