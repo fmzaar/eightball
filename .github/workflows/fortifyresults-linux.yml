@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Check out source code
         uses: actions/checkout@v4
-      - name: Fortify Scan
+      - name: Fortify Results
         run: |
           isSSCOnline = $(python3 <ruta de carga>/online.py)
           echo $isSSCOnline
