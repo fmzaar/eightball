@@ -29,5 +29,5 @@ jobs:
             echo "Altas: " $High
             echo "Criticas: " $Critical
 
-            if [ "$High" -gt "$HIGH_LIMIT"] || ["Critical" -gt "$CRITICAL_LIMIT"]; Then exit 1; fi
+            if [ "$High" -gt "$HIGH_LIMIT"] || ["$Critical" -gt "$CRITICAL_LIMIT"]; Then exit 1; fi
           fi
