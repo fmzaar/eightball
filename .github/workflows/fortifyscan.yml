@@ -16,6 +16,7 @@ jobs:
       - name: Probar scripts
         shell: cmd
         run: |
+          hostname
           python --version
           isSSCOnline = $(py C:/pipeline/online.py)
           echo $isSSCOnline
