@@ -1,0 +1,33 @@
+name: Fortify-Results
+
+on: #MConfigurar de acuerdo a politicas de la empresa.
+  workflow_run:
+    workflows: ["Fortify Scan"]
+    types:
+      - completed
+jobs:
+  Fortify-Results:
+    runs-on: 
+      - self-hosted
+    env:
+      APPID: 0 #Ingresar el APPID
+      HIGH_LIMIT: 0
+      CRITICAL_LIMIT: 0
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+      - name: Fortify Results
+        run: |
+          $isSSCOnline = $(python.exe <ruta de carga>/online.py)
+          echo $isSSCOnline
+          if ($isSSCOnline -eq 200) {
+            python.exe <ruta de carga>/results.py high $APPID
+            python.exe <ruta de carga>/results.py critical $APPID
+            $High = get-content vulnerabilities_high_found.txt
+            $Critical = get-content vulnerabilities_critical_found.txt
+            echo "Total vulnerabilidades encontradas:"
+            echo "Altas: " $High
+            echo "Criticas: " $Critical
+            if ($High -gt $HIGH_LIMIT -Or $Critical -gt $CRITICAL_LIMIT) {exit 1}
+          }
+            
