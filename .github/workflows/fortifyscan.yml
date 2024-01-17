@@ -18,4 +18,5 @@ jobs:
           SSC_TOKEN: ${{secrets.SSC_TOKEN}}
           SC_SAST_CLIENT_AUTH_TOKEN: ${{secrets.CLIENT_AUTH_TOKEN}}
           SSC_APPVERSION: test:qa
+          EXTRA_SC_SAST_SCAN_OPTS: -k
           
