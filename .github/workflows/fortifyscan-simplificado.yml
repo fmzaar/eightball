@@ -1,7 +1,6 @@
 name: Fortify-Scan
 
 on: push #Configurar de acuerdo a politicas de la empresa.
-
 jobs:
   Fortify-Scan:
     runs-on: 
