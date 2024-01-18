@@ -10,4 +10,4 @@ jobs:
         uses: actions/checkout@v4
       - name: Fortify Scan
         run: |
-          scancentral -sscurl ${{secrets.SSC_URL}} -ssctoken ${{secrets.SSC_TOKEN}} start -bt none -upload -application ${{secrets.APPLICATION}} -version ${{secrets.VERSION}} -uptoken ${{secrets.SSC_TOKEN}}
+          scancentral -sscurl ${{secrets.SSC_URL}} -ssctoken ${{secrets.SSC_TOKEN}} start -bt none -upload -application eightball -version 1.0 -uptoken ${{secrets.SSC_TOKEN}}
