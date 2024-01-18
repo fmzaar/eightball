@@ -1,4 +1,4 @@
-name: Fortify-Scan
+name: Fortify-Scan-Simplificado
 
 on: push #Configurar de acuerdo a politicas de la empresa.
 jobs:
@@ -10,4 +10,4 @@ jobs:
         uses: actions/checkout@v4
       - name: Fortify Scan
         run: |
-          scancentral -sscurl ${{secrets.SSC_URL}} -ssctoken ${{secrets.SSC_TOKEN}} start -bt none -upload -application eightball -version 1.0 -uptoken ${{secrets.SSC_TOKEN}}
+          scancentral -sscurl ${{secrets.SSC_URL}} -ssctoken ${{secrets.SSC_TOKEN}} start -bt none -upload -application Eightball -version 1.0 -uptoken ${{secrets.SSC_TOKEN}}
