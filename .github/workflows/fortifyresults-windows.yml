@@ -2,7 +2,7 @@ name: Fortify-Results-Windows
 
 on: #MConfigurar de acuerdo a politicas de la empresa.
   workflow_run:
-    workflows: ["Fortify Scan"]
+    workflows: ["Fortify-Scan-Windows"]
     types:
       - completed
 jobs:
