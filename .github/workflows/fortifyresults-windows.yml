@@ -10,7 +10,7 @@ jobs:
     runs-on: 
       - self-hosted
     env:
-      APPID: 0 #Ingresar el APPID
+      APPID: 12026 #Ingresar el APPID
       HIGH_LIMIT: 0
       CRITICAL_LIMIT: 0
     steps:
