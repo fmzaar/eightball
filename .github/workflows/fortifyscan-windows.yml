@@ -10,6 +10,7 @@ jobs:
       - name: Check out source code
         uses: actions/checkout@v4
       - name: Fortify Scan
+        shell: pwsh
         run: |
           $isSSCOnline = $(python.exe C:\pipeline\online.py)
           cd C:\pipeline\
