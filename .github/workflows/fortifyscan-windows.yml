@@ -12,7 +12,7 @@ jobs:
       - name: Fortify Scan
         run: |
           $isSSCOnline = $(python.exe C:\pipeline\online.py)
-          python.exe C:/pipeline/jobToken.py
+          cd C:\pipeline\
           echo $isSSCOnline
           
           if ($isSSCOnline -eq 200) {
