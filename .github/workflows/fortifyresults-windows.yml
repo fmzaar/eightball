@@ -20,6 +20,7 @@ jobs:
         run: |
           $isSSCOnline = $(python.exe C:\pipeline\online.py)
           echo $isSSCOnline
+          echo $APPID
           cd c:\pipeline
           if ($isSSCOnline -eq 200) {
             python.exe C:\pipeline\results.py high $APPID
