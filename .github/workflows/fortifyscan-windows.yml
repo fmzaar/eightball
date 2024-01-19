@@ -11,14 +11,14 @@ jobs:
         uses: actions/checkout@v4
       - name: Fortify Scan
         run: |
-          $isSSCOnline = $(python.exe <ruta de carga>/online.py)
+          $isSSCOnline = $(python.exe C:\pipeline\online.py)
           echo $isSSCOnline
           
           if ($isSSCOnline -eq 200) {
-            scancentral -sscurl ${{secrets.SSC_URL}} -ssctoken ${{secrets.SSC_TOKEN}} start -bt none -upload -application ${{secrets.APPLICATION}} -version ${{secrets.VERSION}} -uptoken ${{secrets.SSC_TOKEN}}
+            scancentral -sscurl ${{secrets.SSC_URL}} -ssctoken ${{secrets.SSC_TOKEN}} start -bt none -upload -application Eightball -version 1.0 -uptoken ${{secrets.SSC_TOKEN}}
             findstr /B /R /c:"Submitted job and received token:*" > jobtoken.txt
             type jobtoken.txt
-            python.exe <ruta de carga>/jobToken.py 
+            python.exe C:\pipeline\jobToken.py 
              }
         
           
