@@ -1,4 +1,4 @@
-name: Fortify-Results
+name: Fortify-Results-Windows
 
 on: #MConfigurar de acuerdo a politicas de la empresa.
   workflow_run:
@@ -18,11 +18,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Fortify Results
         run: |
-          $isSSCOnline = $(python.exe <ruta de carga>/online.py)
+          $isSSCOnline = $(python.exe C:\pipeline\online.py)
           echo $isSSCOnline
           if ($isSSCOnline -eq 200) {
-            python.exe <ruta de carga>/results.py high $APPID
-            python.exe <ruta de carga>/results.py critical $APPID
+            python.exe C:\pipeline\results.py high $APPID
+            python.exe C:\pipeline\results.py critical $APPID
             $High = get-content vulnerabilities_high_found.txt
             $Critical = get-content vulnerabilities_critical_found.txt
             echo "Total vulnerabilidades encontradas:"
