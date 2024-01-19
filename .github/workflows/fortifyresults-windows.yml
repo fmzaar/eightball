@@ -20,12 +20,12 @@ jobs:
         run: |
           $isSSCOnline = $(python.exe C:\pipeline\online.py)
           echo $isSSCOnline
-          echo $APPID
+          echo ${{env.APPID}}
           echo $APPID "texto texto"
           cd c:\pipeline
           if ($isSSCOnline -eq 200) {
-            python.exe C:\pipeline\results.py high $APPID
-            python.exe C:\pipeline\results.py critical $APPID
+            python.exe C:\pipeline\results.py high ${{env.APPID}}
+            python.exe C:\pipeline\results.py critical ${{env.APPID}}
             $High = get-content vulnerabilities_high_found.txt
             $Critical = get-content vulnerabilities_critical_found.txt
             echo "Total vulnerabilidades encontradas:"
@@ -33,8 +33,5 @@ jobs:
             echo "Criticas: " $Critical
             if ($High -gt $HIGH_LIMIT -Or $Critical -gt $CRITICAL_LIMIT) {exit 1}
           }
-        env:
-          APPID: 12026 #Ingresar el APPID
-          HIGH_LIMIT: 0
-          CRITICAL_LIMIT: 0
+
             
