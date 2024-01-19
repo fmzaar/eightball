@@ -1,0 +1,51 @@
+name: Fortify-Scan
+
+on: push
+
+jobs:
+  fortify-SAST:
+    runs-on: 
+      - self-hosted
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+      - name: Fortify Scan
+        run: |
+          $isSSCOnline = $(python.exe C:\pipeline\online.py)
+          cd C:\pipeline\
+          echo $isSSCOnline
+          
+          if ($isSSCOnline -eq 200) {
+            scancentral -sscurl ${{secrets.SSC_URL}} -ssctoken ${{secrets.SSC_TOKEN}} start -bt none -upload -application Eightball -version 1.0 -uptoken ${{secrets.SSC_TOKEN}} | findstr /B /R /c:"Submitted job and received token:*" > jobtoken.txt
+            type jobtoken.txt
+            python.exe C:/pipeline/jobToken.py
+            
+             }
+  fortify-Results:
+    needs: fortify-SAST
+    runs-on: 
+      - self-hosted
+    env:
+      APPID: 12026 #Ingresar el APPID
+      HIGH_LIMIT: 0
+      CRITICAL_LIMIT: 0
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+      - name: Fortify Results
+        run: |
+          $isSSCOnline = $(python.exe C:\pipeline\online.py)
+          echo $isSSCOnline
+          echo ${{env.APPID}}
+          echo $APPID "texto texto"
+          cd c:\pipeline
+          if ($isSSCOnline -eq 200) {
+            python.exe C:\pipeline\results.py high ${{env.APPID}}
+            python.exe C:\pipeline\results.py critical ${{env.APPID}}
+            $High = get-content vulnerabilities_high_found.txt
+            $Critical = get-content vulnerabilities_critical_found.txt
+            echo "Total vulnerabilidades encontradas:"
+            echo "Altas: " $High
+            echo "Criticas: " $Critical
+            if ($High -gt ${{env.HIGH_LIMIT}} -Or $Critical -gt ${{env.CRITICAL_LIMIT}}) {exit 1}
+          }
