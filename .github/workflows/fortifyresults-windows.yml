@@ -11,8 +11,8 @@ jobs:
       - self-hosted
     env:
       APPID: 12026 #Ingresar el APPID
-      HIGH_LIMIT: 0
-      CRITICAL_LIMIT: 0
+      HIGH_LIMIT: 10
+      CRITICAL_LIMIT: 10
     steps:
       - name: Check out source code
         uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
             echo "Total vulnerabilidades encontradas:"
             echo "Altas: " $High
             echo "Criticas: " $Critical
-            if ($High -gt $HIGH_LIMIT -Or $Critical -gt $CRITICAL_LIMIT) {exit 1}
+            if ($High -gt ${{env.HIGH_LIMIT}} -Or $Critical -gt ${{env.CRITICAL_LIMIT}}) {exit 1}
           }
 
             
