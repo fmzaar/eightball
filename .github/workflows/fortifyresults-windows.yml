@@ -33,4 +33,8 @@ jobs:
             echo "Criticas: " $Critical
             if ($High -gt $HIGH_LIMIT -Or $Critical -gt $CRITICAL_LIMIT) {exit 1}
           }
+        env:
+          APPID: 12026 #Ingresar el APPID
+          HIGH_LIMIT: 0
+          CRITICAL_LIMIT: 0
             
